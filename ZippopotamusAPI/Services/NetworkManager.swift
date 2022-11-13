@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Alamofire
 
-enum NetworkError: Error {
-    case invalidURL
-    case noData
-    case decodingError
-}
+//enum NetworkError: Error {
+//    case invalidURL
+//    case noData
+//    case decodingError
+//}
 
 enum Link: String {
     case url = "https://api.zippopotam.us/tr/07460"
@@ -22,28 +23,42 @@ class NetworkManager {
     
     private init() {}
     
-    func fetchZip(from url: String, completion: @escaping(Result<Zip, NetworkError>) -> Void) {
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let zip = try JSONDecoder().decode(Zip.self, from: data)
-                DispatchQueue.main.async {
+    func fetchZip(from url: String, completion: @escaping (Result<Zip, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let zip = Zip.getZip(from: value)
                     completion(.success(zip))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            } catch let error {
-                completion(.failure(.decodingError))
-                print(error.localizedDescription)
             }
-        }.resume()
     }
+    
+//    func fetchZip(from url: String, completion: @escaping(Result<Zip, NetworkError>) -> Void) {
+//        guard let url = URL(string: url) else {
+//            completion(.failure(.invalidURL))
+//            return
+//        }
+//
+//        URLSession.shared.dataTask(with: url) { data, _, error in
+//            guard let data = data else {
+//                completion(.failure(.noData))
+//                print(error?.localizedDescription ?? "No error description")
+//                return
+//            }
+//
+//            do {
+//                let zip = try JSONDecoder().decode(Zip.self, from: data)
+//                DispatchQueue.main.async {
+//                    completion(.success(zip))
+//                }
+//            } catch let error {
+//                completion(.failure(.decodingError))
+//                print(error.localizedDescription)
+//            }
+//        }.resume()
+//    }
 }

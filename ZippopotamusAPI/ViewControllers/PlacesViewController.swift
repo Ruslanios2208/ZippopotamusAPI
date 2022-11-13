@@ -8,15 +8,14 @@
 import UIKit
 
 class PlacesViewController: UITableViewController {
-    
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    
+
     private var zip: Zip?
+    
+    private var spinnerView = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
+        showSpinner(in: view)
         fetchZip()
     }
     
@@ -43,19 +42,43 @@ class PlacesViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    // MARK: - UIActivityIndicatorView
+    private func showSpinner(in view: UIView) {
+        spinnerView = UIActivityIndicatorView(style: .large)
+        spinnerView.color = .gray
+        spinnerView.startAnimating()
+        spinnerView.center = view.center
+        spinnerView.hidesWhenStopped = true
+        
+        view.addSubview(spinnerView)
+    }
+    
     // MARK: - Networking
-    func fetchZip() {
+    private func fetchZip() {
         NetworkManager.shared.fetchZip(from: Link.url.rawValue) { [weak self] result in
             switch result {
             case .success(let zip):
                 self?.zip = zip
                 self?.tableView.reloadData()
-                self?.activityIndicator.stopAnimating()
-                print(zip)
+                self?.spinnerView.stopAnimating()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+    
+//    private func fetchZip() {
+//        NetworkManager.shared.fetchZip(from: Link.url.rawValue) { [weak self] result in
+//            switch result {
+//            case .success(let zip):
+//                self?.zip = zip
+//                self?.tableView.reloadData()
+//                self?.spinnerView.stopAnimating()
+//                print(zip)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
 }
 

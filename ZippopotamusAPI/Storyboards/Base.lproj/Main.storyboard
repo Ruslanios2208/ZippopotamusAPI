@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Zip Code Locations:-->
+        <!--Zip Code Locations-->
         <scene sceneID="rir-hv-bof">
             <objects>
                 <tableViewController id="fEk-zI-5WW" customClass="PlacesViewController" customModule="ZippopotamusAPI" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,29 +15,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <activityIndicatorView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="Gkq-b9-0QL">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="place" rowHeight="154" id="SjZ-QQ-d0B" customClass="PlaceCell" customModule="ZippopotamusAPI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="393" height="154"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="154"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SjZ-QQ-d0B" id="fy9-SY-buk">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vhQ-lW-UUr">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vhQ-lW-UUr">
                                             <rect key="frame" x="20" y="8" width="353" height="138"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv2-Dv-1q7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="57.666666666666664"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv2-Dv-1q7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="57.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-Od-FVr">
-                                                    <rect key="frame" x="0.0" y="65.666666666666686" width="41.333333333333336" height="72.333333333333314"/>
+                                                    <rect key="frame" x="0.0" y="65.666666666666686" width="353" height="72.333333333333314"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -66,10 +62,7 @@
                             <outlet property="delegate" destination="fEk-zI-5WW" id="Yug-d6-FlD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Zip Code Locations:" id="tLJ-Ha-gg9"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="Gkq-b9-0QL" id="JRu-Ii-6KY"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Zip Code Locations" id="tLJ-Ha-gg9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8H-Cz-W8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
