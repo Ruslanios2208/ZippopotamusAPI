@@ -10,6 +10,7 @@ import Foundation
 enum NetworkError: Error {
     case invalidURL
     case noData
+    case decodingError
 }
 
 enum Link: String {
@@ -21,7 +22,7 @@ class NetworkManager {
     
     private init() {}
     
-    func fetchZip(from url: String, completion: @escaping (Result<Zip, NetworkError>) -> Void) {
+    func fetchZip(from url: String, completion: @escaping(Result<Zip, NetworkError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -40,6 +41,7 @@ class NetworkManager {
                     completion(.success(zip))
                 }
             } catch let error {
+                completion(.failure(.decodingError))
                 print(error.localizedDescription)
             }
         }.resume()

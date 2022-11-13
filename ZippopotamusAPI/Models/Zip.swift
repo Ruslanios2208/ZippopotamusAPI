@@ -26,6 +26,15 @@ struct Place: Decodable {
     let stateAbbreviation: String
     let latitude: String
     
+    var description: String {
+        """
+        Longitude: \(longitude)
+        Latitude: \(latitude)
+        State: \(state)
+        State abbreviation: \(stateAbbreviation)
+    """
+    }
+    
     enum CodingKeys: String, CodingKey {
         case placeName = "place name"
         case longitude = "longitude"

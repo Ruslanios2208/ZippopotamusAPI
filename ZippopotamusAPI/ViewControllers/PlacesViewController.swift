@@ -9,10 +9,14 @@ import UIKit
 
 class PlacesViewController: UITableViewController {
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     private var zip: Zip?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         fetchZip()
     }
     
@@ -33,6 +37,11 @@ class PlacesViewController: UITableViewController {
         }
         return cell
     }
+    
+    // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     // MARK: - Networking
     func fetchZip() {
@@ -41,6 +50,7 @@ class PlacesViewController: UITableViewController {
             case .success(let zip):
                 self?.zip = zip
                 self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
                 print(zip)
             case .failure(let error):
                 print(error.localizedDescription)
