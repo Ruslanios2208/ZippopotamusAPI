@@ -66,19 +66,5 @@ class PlacesViewController: UITableViewController {
             }
         }
     }
-    
-//    private func fetchZip() {
-//        NetworkManager.shared.fetchZip(from: Link.url.rawValue) { [weak self] result in
-//            switch result {
-//            case .success(let zip):
-//                self?.zip = zip
-//                self?.tableView.reloadData()
-//                self?.spinnerView.stopAnimating()
-//                print(zip)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
 }
 
